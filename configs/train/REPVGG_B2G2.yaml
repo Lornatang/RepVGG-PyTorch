@@ -1,0 +1,78 @@
+# experiment name
+EXP_NAME: RepVGG_B2G2-ImageNet_1K
+# dataset mean parameters
+DATASET_MEAN_PARAMETERS: [0.485, 0.456, 0.406]
+# dataset std parameters
+DATASET_STD_PARAMETERS: [0.229, 0.224, 0.225]
+# random number seed
+SEED: 0
+# run device model
+DEVICE_ID: 0
+
+# Model definition
+MODEL:
+  EMA:
+    ENABLE: True
+    DECAY: 0.999
+    COMPILED: False
+  CLS:
+    NAME: reg_vgg_b2g2
+    NUM_CLASSES: 1000
+    INFERENCE_MODE: False
+    USE_CHECKPOINT: False
+    COMPILED: True
+
+TRAIN:
+  DATASET:
+    TRAIN_IMAGES_DIR: ./data/ImageNet_1K/ILSVRC2012_img_train
+    TRAIN_IMAGES_SIZE: 224
+
+  # Model file address, used for pre-training and recovery training
+  CHECKPOINT:
+    PRETRAINED_MODEL: ""
+    RESUMED_MODEL: ""
+
+  # training hyperparameters
+  HYP:
+    IMGS_PER_BATCH: 128
+    SHUFFLE: True
+    NUM_WORKERS: 4
+    PIN_MEMORY: True
+    PERSISTENT_WORKERS: True
+
+    EPOCHS: 120
+
+  OPTIM:
+    NAME: SGD
+    LR: 0.1
+    MOMENTUM: 0.9
+    DAMPENING: 0.0
+    WEIGHT_DECAY: 0.0001
+    NESTEROV: False
+
+  LR_SCHEDULER:
+    NAME: CosineAnnealingLR
+    T_MAX: 120
+    ETA_MIN: 0.0
+    LAST_EPOCH: -1
+
+  # Loss function
+  LOSSES:
+    NAME: CrossEntropyLoss
+    LABEL_SMOOTHING_FACTOR: 0.1
+    WEIGHT: [ 1.0 ]
+
+  PRINT_FREQ: 100
+
+VALID:
+  DATASET:
+    VALID_IMAGES_DIR: ./data/ImageNet_1K/ILSVRC2012_img_valid
+    VALID_IMAGES_SIZE: 224
+
+  # Test hyperparameters
+  HYP:
+    IMGS_PER_BATCH: 128
+    SHUFFLE: False
+    NUM_WORKERS: 4
+    PIN_MEMORY: True
+    PERSISTENT_WORKERS: True
