@@ -79,17 +79,17 @@ python3 train.py --config_path ./configs/train/RepVGG_A0.yaml
 Source of original paper results: [https://arxiv.org/pdf/2101.03697v3.pdf](https://arxiv.org/pdf/2101.03697v3.pdf))
 
 In the following table, the top-x error value in `()` indicates the result of the project, and `-` indicates no test.
-| Model | Dataset | Top-1 error (val)  | Top-5 error (val) |
-|:---------:|:-----------:|:------------------:|:-----------------:|
-| RepVGG-A0 | ImageNet_1K | 27.88%(**30.25%**) | -(**10.93%**)   |
-| RepVGG-A1 | ImageNet_1K | 25.03%(**26.71%**) | 7.76%(**8.58%**)  |
-| RepVGG-B1 | ImageNet_1K | 22.85%(**19.65%**) | 6.71%(**4.87%**)  |
-| RepVGG-A2 | ImageNet_1K | 21.75%(**18.33%**) | 6.05%(**4.34%**)  |
-| RepVGG-B1g4 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
-| RepVGG-B1g2 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
-| RepVGG-B1 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
-| RepVGG-B2g4 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
-| RepVGG-B2 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
+|    Model    |   Dataset   |  Top-1 Acc (val)   |
+|:-----------:|:-----------:|:------------------:|
+| RepVGG-A0   | ImageNet_1K | 72.41(**72.40**) |
+| RepVGG-A1   | ImageNet_1K | 25.03(**26.71**) |
+| RepVGG-B1   | ImageNet_1K | 22.85(**19.65**) |
+| RepVGG-A2   | ImageNet_1K | 21.75(**18.33**) |
+| RepVGG-B1g4 | ImageNet_1K | 21.43(**17.66**) |
+| RepVGG-B1g2 | ImageNet_1K | 21.43(**17.66**) |
+| RepVGG-B1   | ImageNet_1K | 21.43(**17.66**) |
+| RepVGG-B2g4 | ImageNet_1K | 21.43(**17.66**) |
+| RepVGG-B2   | ImageNet_1K | 21.43(**17.66**) |
 
 ```bash
 # Download `RepVGG_A0_plain-ImageNet_1K.pth.tar` weights to `./results/pretrained_models`
