@@ -114,17 +114,14 @@ class RepVGGBlock(nn.Module):
 
         if inference_mode:
             self.rbr_reparam = nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, dilation, groups)
-
         else:
             self.rbr_identity = nn.BatchNorm2d(in_channels) if out_channels == in_channels and stride == 1 else None
-            self.rbr_dense = nn.Sequential(
-                nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, groups=groups, bias=False),
-                nn.BatchNorm2d(out_channels)
-            )
-            self.rbr_1x1 = nn.Sequential(
-                nn.Conv2d(in_channels, out_channels, 1, stride, 0, groups=groups, bias=False),
-                nn.BatchNorm2d(out_channels)
-            )
+            self.rbr_dense = nn.Sequential()
+            self.rbr_dense.add_module("conv", nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, groups=groups, bias=False))
+            self.rbr_dense.add_module("bn", nn.BatchNorm2d(out_channels))
+            self.rbr_1x1 = nn.Sequential()
+            self.rbr_1x1.add_module("conv", nn.Conv2d(in_channels, out_channels, 1, stride, 0, groups=groups, bias=False))
+            self.rbr_1x1.add_module("bn", nn.BatchNorm2d(out_channels))
 
     def forward(self, x: Tensor) -> Tensor:
         if hasattr(self, "rbr_reparam"):
@@ -192,7 +189,7 @@ class RepVGGBlock(nn.Module):
         t = (gamma / std).reshape(-1, 1, 1, 1)
         return kernel * t, beta - running_mean * gamma / std
 
-    def inference_mode(self):
+    def switch_inference_mode(self):
         if hasattr(self, "rbr_reparam"):
             return
         kernel, bias = self.get_equivalent_kernel_bias()
@@ -209,7 +206,7 @@ class RepVGGBlock(nn.Module):
         if hasattr(self, "id_tensor"):
             self.__delattr__("id_tensor")
 
-        self.inference_model = True
+        self.inference_mode = True
 
 
 def reg_vgg_a0(**kwargs):
@@ -268,8 +265,8 @@ def convert_inference_model(model: nn.Module, model_save_path: str = None):
     model = copy.deepcopy(model)
 
     for module in model.modules():
-        if hasattr(module, "inference_mode"):
-            module.inference_mode()
+        if hasattr(module, "switch_inference_mode"):
+            module.switch_inference_mode()
 
     if model_save_path is not None:
         torch.save({"state_dict": model.state_dict()}, model_save_path)

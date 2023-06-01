@@ -95,12 +95,12 @@ if __name__ == "__main__":
     parser.add_argument("--model_std_parameters", type=list, default=[0.229, 0.224, 0.225])
     parser.add_argument("--model_arch_name", type=str, default="reg_vgg_a0")
     parser.add_argument("--model_num_classes", type=int, default=1000)
-    parser.add_argument("--inference_mode", type=bool, default=False)
+    parser.add_argument("--inference_mode", type=bool, default=True)
     parser.add_argument("--use_checkpoint", type=bool, default=False)
     parser.add_argument("--class_label_file", type=str, default="./data/ImageNet_1K_labels_map.txt")
     parser.add_argument("--model_weights_path",
                         type=str,
-                        default="./results/pretrained_models/RepVGG_A0-ImageNet_1K.pth.tar",
+                        default="./results/pretrained_models/RepVGG_A0_plain-ImageNet_1K.pth.tar",
                         help="Model weights file path.")
     parser.add_argument("--half",
                         action="store_true",
