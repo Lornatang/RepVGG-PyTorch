@@ -137,7 +137,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config_path",
                         type=str,
-                        default="./configs/test/REPVGG_A0.yaml",
+                        default="./configs/test/REPVGG_A0_plain.yaml",
                         required=True,
                         help="Path to test config file.")
     args = parser.parse_args()
@@ -154,8 +154,7 @@ def main() -> None:
 
     test(cls_model,
          test_data_prefetcher,
-         device,
-         config)
+         device)
 
 
 if __name__ == "__main__":

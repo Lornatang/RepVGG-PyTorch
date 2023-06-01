@@ -42,11 +42,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_arch_name", type=str, default="reg_vgg_a0")
     parser.add_argument("--model_num_classes", type=int, default=1000)
-    parser.add_argument("-i", "--inputs_model_weights_path",
+    parser.add_argument("--i", "--inputs_model_weights_path",
                         type=str,
                         default="./results/pretrained_models/RepVGG_A0-ImageNet_1K.pth.tar",
                         help="Input model weights file path.")
-    parser.add_argument("-o", "--output_model_weights_path",
+    parser.add_argument("--o", "--output_model_weights_path",
                         type=str,
                         default="./results/pretrained_models/RepVGG_A0_plain-ImageNet_1K.pth.tar",
                         help="Output model weights file path.")
@@ -55,7 +55,7 @@ if __name__ == "__main__":
                         help="Use half precision.")
     parser.add_argument("--device",
                         type=str,
-                        default="cuda:0",
+                        default="cpu",
                         help="Device to run model.")
     args = parser.parse_args()
 

@@ -7,7 +7,7 @@ DATASET_STD_PARAMETERS: [0.229, 0.224, 0.225]
 # random number seed
 SEED: 0
 # run device model
-DEVICE_ID: 0
+DEVICE_ID: 3
 
 # Model definition
 MODEL:

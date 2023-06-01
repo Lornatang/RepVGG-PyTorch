@@ -18,6 +18,7 @@ of [RepVGG: Making VGG-style ConvNets Great Again](https://arxiv.org/pdf/2101.03
     - [Download datasets](#download-datasets)
     - [How Test and Train](#how-test-and-train)
         - [Test RepVGG-A0](#test-repvgg-a0)
+        - [Test RepVGG-A0_plain](#test-repvgg-a0plain)
         - [Train RepVGG](#train-repvgg-a0)
         - [Resume train RepVGG](#resume-train-repvgg-a0)
     - [Result](#result)
@@ -43,28 +44,55 @@ Please refer to `README.md` in the `data` directory for the method of making a d
 
 Both training and testing only need to modify yaml file.
 
+### Test RepVGG-A0_plain
+
+```bash
+# Multi-plain model convert to single plain model
+python3 convert_plain_model.py --model_arch_name repvgg_a0 --i "./results/pretrained_models/RepVGG_A0-ImageNet_1K.pth.tar" --o "./results/pretrained_models/RepVGG_A0_plain-ImageNet_1K.pth.tar"
+python3 test.py --config_path ./configs/test/REPVGG_A0_plain.yaml
+```
+
 ### Test RepVGG-A0
+
+```bash
+python3 test.py --config_path ./configs/test/REPVGG_A0.yaml
+```
 
 ### Train RepVGG-A0
 
+```bash
+python3 train.py --config_path ./configs/train/REPVGG_A0.yaml
+```
+
 ### Resume train RepVGG-A0
+
+Modify the `./configs/train/REPVGG_A0.yaml` file.
+
+- line 33: `RESUMED_G_MODEL` change to `./samples/RepVGG_A0-ImageNet_1K/epoch_xxx.pth.tar`.
+
+```bash
+python3 train.py --config_path ./configs/train/RepVGG_A0.yaml
+```
 
 ## Result
 
-Source of original paper results: [https://arxiv.org/pdf/1512.03385v1.pdf](https://arxiv.org/pdf/1512.03385v1.pdf))
+Source of original paper results: [https://arxiv.org/pdf/2101.03697v3.pdf](https://arxiv.org/pdf/2101.03697v3.pdf))
 
 In the following table, the top-x error value in `()` indicates the result of the project, and `-` indicates no test.
-
-|   Model   |   Dataset   | Top-1 error (val)  | Top-5 error (val) |
+| Model | Dataset | Top-1 error (val)  | Top-5 error (val) |
 |:---------:|:-----------:|:------------------:|:-----------------:|
-| resnet18  | ImageNet_1K | 27.88%(**30.25%**) |   -(**10.93%**)   |
-| resnet34  | ImageNet_1K | 25.03%(**26.71%**) | 7.76%(**8.58%**)  |
-| resnet50  | ImageNet_1K | 22.85%(**19.65%**) | 6.71%(**4.87%**)  |
-| resnet101 | ImageNet_1K | 21.75%(**18.33%**) | 6.05%(**4.34%**)  |
-| resnet152 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
+| RepVGG-A0 | ImageNet_1K | 27.88%(**30.25%**) | -(**10.93%**)   |
+| RepVGG-A1 | ImageNet_1K | 25.03%(**26.71%**) | 7.76%(**8.58%**)  |
+| RepVGG-B1 | ImageNet_1K | 22.85%(**19.65%**) | 6.71%(**4.87%**)  |
+| RepVGG-A2 | ImageNet_1K | 21.75%(**18.33%**) | 6.05%(**4.34%**)  |
+| RepVGG-B1g4 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
+| RepVGG-B1g2 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
+| RepVGG-B1 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
+| RepVGG-B2g4 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
+| RepVGG-B2 | ImageNet_1K | 21.43%(**17.66%**) | 5.71%(**4.08%**)  |
 
 ```bash
-# Download `ResNet18-ImageNet_1K-57bb63e.pth.tar` weights to `./results/pretrained_models`
+# Download `RepVGG_A0_plain-ImageNet_1K.pth.tar` weights to `./results/pretrained_models`
 # More detail see `README.md<Download weights>`
 python3 ./inference.py 
 ```
@@ -76,13 +104,13 @@ Input:
 Output:
 
 ```text
-Build `resnet18` model successfully.
-Load `resnet18` model weights `/ResNet-PyTorch/results/pretrained_models/ResNet18-ImageNet_1K-57bb63e.pth.tar` successfully.
-tench, Tinca tinca                                                          (91.46%)
-barracouta, snoek                                                           (7.15%)
-gar, garfish, garpike, billfish, Lepisosteus osseus                         (0.43%)
-coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch    (0.27%)
-platypus, duckbill, duckbilled platypus, duck-billed platypus, Ornithorhynchus anatinus (0.21%)
+Build `reg_vgg_a0` model successfully.
+Load `reg_vgg_a0` model weights `/RepVGG-PyTorch/results/pretrained_models/RepVGG_A0_plain-ImageNet_1K.pth.tar` successfully.
+tench, Tinca tinca                                                          (92.43%)
+barracouta, snoek                                                           (6.45%)
+armadillo                                                                   (0.46%)
+mud turtle                                                                  (0.23%)
+terrapin                                                                    (0.09%)
 ```
 
 ## Contributing

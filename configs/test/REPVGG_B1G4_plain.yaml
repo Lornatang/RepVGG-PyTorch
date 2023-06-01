@@ -1,5 +1,5 @@
 # experiment name
-EXP_NAME: RepVGG_B3G2-ImageNet_1K
+EXP_NAME: RepVGG_B1G4_plain-ImageNet_1K
 # dataset mean parameters
 DATASET_MEAN_PARAMETERS: [0.485, 0.456, 0.406]
 # dataset std parameters
@@ -9,14 +9,14 @@ SEED: 0
 # run device model
 DEVICE_ID: 0
 # Model weights path
-MODEL_WEIGHTS_PATH: "./results/pretrained_models/RepVGG_B3G2-ImageNet_1K.pth.tar"
+MODEL_WEIGHTS_PATH: "./results/pretrained_models/RepVGG_B1G4_plain-ImageNet_1K.pth.tar"
 
 # Model definition
 MODEL:
   CLS:
-    NAME: reg_vgg_b3g2
+    NAME: reg_vgg_b1g4
     NUM_CLASSES: 1000
-    INFERENCE_MODE: False
+    INFERENCE_MODE: True
     USE_CHECKPOINT: False
     COMPILED: False
 
