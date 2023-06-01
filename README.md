@@ -68,7 +68,7 @@ python3 train.py --config_path ./configs/train/REPVGG_A0.yaml
 
 Modify the `./configs/train/REPVGG_A0.yaml` file.
 
-- line 33: `RESUMED_G_MODEL` change to `./samples/RepVGG_A0-ImageNet_1K/epoch_xxx.pth.tar`.
+- line 33: `RESUMED_MODEL` change to `./samples/RepVGG_A0-ImageNet_1K/epoch_xxx.pth.tar`.
 
 ```bash
 python3 train.py --config_path ./configs/train/RepVGG_A0.yaml
@@ -82,14 +82,14 @@ In the following table, the top-x error value in `()` indicates the result of th
 |    Model    |   Dataset   |  Top-1 Acc (val)   |
 |:-----------:|:-----------:|:------------------:|
 | RepVGG-A0   | ImageNet_1K | 72.41(**72.40**) |
-| RepVGG-A1   | ImageNet_1K | 25.03(**26.71**) |
-| RepVGG-B1   | ImageNet_1K | 22.85(**19.65**) |
-| RepVGG-A2   | ImageNet_1K | 21.75(**18.33**) |
-| RepVGG-B1g4 | ImageNet_1K | 21.43(**17.66**) |
-| RepVGG-B1g2 | ImageNet_1K | 21.43(**17.66**) |
-| RepVGG-B1   | ImageNet_1K | 21.43(**17.66**) |
-| RepVGG-B2g4 | ImageNet_1K | 21.43(**17.66**) |
-| RepVGG-B2   | ImageNet_1K | 21.43(**17.66**) |
+| RepVGG-A1   | ImageNet_1K | 74.46(**74.48**) |
+| RepVGG-B1   | ImageNet_1K | 75.14(**78.35**) |
+| RepVGG-A2   | ImageNet_1K | 76.48(**76.47**) |
+| RepVGG-B1g4 | ImageNet_1K | 77.58(**77.58**) |
+| RepVGG-B1g2 | ImageNet_1K | 77.78(**77.78**) |
+| RepVGG-B1   | ImageNet_1K | 78.37(**78.36**) |
+| RepVGG-B2g4 | ImageNet_1K | 78.50(**78.50**) |
+| RepVGG-B2   | ImageNet_1K | 78.78(**78.79**) |
 
 ```bash
 # Download `RepVGG_A0_plain-ImageNet_1K.pth.tar` weights to `./results/pretrained_models`
