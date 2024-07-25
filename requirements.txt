@@ -1,4 +1,4 @@
-Pillow==10.0.1
+Pillow==10.3.0
 torch==2.2.0
 numpy==1.23.5
 PyYAML==6.0
