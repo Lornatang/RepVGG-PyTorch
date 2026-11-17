@@ -1,7 +1,7 @@
 Pillow
-torch==2.8.0
-numpy==1.23.5
-PyYAML==6.0
-typing==3.7.4.3
-opencv-python==4.8.1.78
-torchvision==0.15.2+cu118
+torch
+numpy
+PyYAML
+typing
+opencv-python
+torchvision
