@@ -2,6 +2,5 @@ Pillow
 torch
 numpy
 PyYAML
-typing
 opencv-python
 torchvision
